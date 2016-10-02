@@ -20,13 +20,13 @@ class Game extends Model
     }
 
     //calculate the new winner score
-    public static function win($score,$expected, $k = 24)
+    public static function win($score,$expected, $k = 32)
     {
     	return $score + $k * (1 - $expected);
     }
 
     //calculate the new loser score
-    public static function loss($score, $expected, $k = 24)
+    public static function loss($score, $expected, $k = 32)
     {
     	return $score + $k * (0 - $expected);
     }
@@ -38,6 +38,6 @@ class Game extends Model
     		return 0;
     	}
 
-    	return $score / (1 + ($losses / $wins));
+    	return ROUND($score / (1 + ($losses / $wins)));
     }
 }

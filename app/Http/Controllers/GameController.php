@@ -22,8 +22,12 @@ class GameController extends Controller
 		$images = Image::orderBy(DB::raw('RAND()'))->take($limit)->get();
 
 		if (count($images)) {
-			return view('pages.game',compact('images'));
+
+			$top6 = Image::orderBy('rank','desc')->take(6)->get();
+
+			return view('pages.game',compact('images','top6'));
 		}
+
 		return redirect('images');
 	}
 
@@ -63,6 +67,6 @@ class GameController extends Controller
 				'loser' => $request->loser,
 			]);
 
-		return redirect()->back()->with('success','Scores update! Continue playing');
+		return redirect()->route('game.index')->with('success','Scores update! Continue playing');
 	}
 }
