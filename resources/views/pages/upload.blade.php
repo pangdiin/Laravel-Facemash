@@ -12,9 +12,17 @@
                 <div class="jumbotron bg-inherit text-white">
                     <div class="container">
                         <h2 class="raleway">Paste Image assets inside public/img directory</h2>
+                        
+                        <form action="{{ route('images.store') }}" method="POST" enctype="multipart/form-data" class="form-horizontal">
+                        {{ csrf_field() }}
+
+                            <button type="submit" class="btn btn-cyan montserrat">UPLOAD</button>
+                        
+                        </form>
+{{-- 
                         {!! Form::open(['method' => 'POST', 'action' => 'ImageController@store', 'class' => 'form-horizontal', 'enctype' => 'multipart/form-data']) !!}
                             <button type="submit" class="btn btn-cyan montserrat">UPLOAD</button>
-                        {!! Form::close() !!}
+                        {!! Form::close() !!} --}}
                         @if(count($images))
                             <p><a href="{{ url('game') }}" class="btn  btn-green montserrat text-uppercase">Start Game</a></p>
                         @endif
